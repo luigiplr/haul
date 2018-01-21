@@ -100,6 +100,7 @@
           "targets": {
             "node": "current"
           },
+	  "modules": false,
           "useBuiltIns": true
         }
       ]
