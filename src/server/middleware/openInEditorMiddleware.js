@@ -64,7 +64,7 @@ function detectEditorType(): ?string {
  * to target.
  */
 function detectEditorCmd(): ?string {
-  // the specific haul command gets precident
+  // the specific haul command gets precedent
   if (process.env.REACT_EDITOR_CMD) {
     return process.env.REACT_EDITOR_CMD;
   }
@@ -108,7 +108,7 @@ function create(): Middleware {
    */
   function openInEditorMiddleware(req: $Request, res: $Response, next) {
     // only allow the appropriate path
-    if (req.path !== '/open-stack-frame') {
+    if (req.cleanPath !== '/open-stack-frame') {
       return next();
     }
 

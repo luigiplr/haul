@@ -1,4 +1,7 @@
-# Haul HMR API
+---
+id: hmr_api
+title: Haul HMR API
+---
 
 ## Module `haul/hot/patch.js`
 
@@ -16,7 +19,7 @@ require('haul/hot/patch');
   does nothing.
 
 * In development (`NODE_ENV !== 'production'`):
-  
+
   Patches React's `createElement` and `createFactory`, so that they use `react-proxy` and return a proxied component. Those components behave like the normal ones, but have their state persisted between updates.
 
   This file __must be imported/required in the root file / entry file before anything else__, since the code must be executed at the very beginning.
@@ -35,7 +38,7 @@ import {
 
 ### `makeHot`
 
-Wrap the initial root component factory with HotWrapper, which allows for force deep update of the components tree and servers as an error boundry. This function should be called only once, upon app's initial render.
+Wrap the initial root component factory with HotWrapper, which allows for force deep update of the components tree and servers as an error boundary. This function should be called only once, upon app's initial render.
 
 In case of multi root component app, the second argument is used for differentiating the factories. When calling `redraw`, the same `id` must be passed as a 2nd argument.
 
