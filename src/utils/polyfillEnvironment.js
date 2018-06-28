@@ -13,23 +13,13 @@ if (process.env.NODE_ENV !== 'production') {
   let protocol;
   let origin;
 
-  // If remote debugger is attached, we have access to `window` object
-  // from which we can get `protocol` and `origin` of dev server.
-  // This is a prefered way in remote debugger, otherwise it would
-  // fail due to CSP errors because of making requests to eg `10.0.2.2`
-  // from `localhost`.
-  if (typeof window !== 'undefined' && window.location) {
-    protocol = window.location.protocol;
-    origin = window.location.host;
-  } else {
-    // In order to ensure hot client has a valid URL we need to get a valid origin
-    // from URL from which the bundle was loaded. When using iOS simulator/Android emulator
-    // or Android device it will be `localhost:<port>` but when using real iOS device
-    // it will be `<ip>.xip.io:<port>`.
-    const { scriptURL } = NativeModules.SourceCode;
-    if (scriptURL) {
-      [protocol, , origin] = scriptURL.split('/');
-    }
+  // In order to ensure hot client has a valid URL we need to get a valid origin
+  // from URL from which the bundle was loaded. When using iOS simulator/Android emulator
+  // or Android device it will be `localhost:<port>` but when using real iOS device
+  // it will be `<ip>.xip.io:<port>`.
+  const { scriptURL } = NativeModules.SourceCode;
+  if (scriptURL) {
+    [protocol, , origin] = scriptURL.split('/');
   }
 
   if (protocol && origin) {
